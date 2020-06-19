@@ -45,13 +45,12 @@ const UserList = (props) => {
       <tbody>
         {/* maps over the users which remain relevant to the string typed into the search bar */}
         {filtered.map((user) => {
-          {
-            /* const updateCell = (event) => {
+          /* const updateCell = (event) => {
             user = event.target.value;
             props.textChanged(user);
             console.log(user);
           }; */
-          }
+
           const ref = props.contentEditable;
 
           return (
@@ -63,8 +62,9 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
-                    onChange={() => props.textChanged(user)}
+                    onChange={() => props.textChanged(user.name)}
                     html={user.name}
+                    ref={ref}
                   />
                 </div>
               </td>
@@ -73,6 +73,7 @@ const UserList = (props) => {
                   innerRef={props.contentEditable}
                   disabled={false}
                   //   onChange={updateCell}
+                  onChange={() => props.textChanged(user.company)}
                   html={user.company}
                 />
               </td>
@@ -82,6 +83,7 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
+                    onChange={() => props.textChanged(user.address)}
                     html={user.address}
                   />
                 </div>
@@ -92,6 +94,7 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
+                    onChange={() => props.textChanged(user.email)}
                     html={user.email}
                   />
                 </div>
@@ -102,6 +105,7 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
+                    onChange={() => props.textChanged(user.phone)}
                     html={user.phone}
                   />
                 </div>
@@ -112,6 +116,7 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
+                    onChange={() => props.textChanged(user.username)}
                     html={user.username}
                   />
                 </div>
@@ -122,6 +127,7 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
+                    onChange={() => props.textChanged(user.website)}
                     html={user.website}
                   />
                 </div>

@@ -6,10 +6,16 @@ import UserList from "../Components/UserList";
 import SearchBar from "../Components/Searchbar";
 
 class Main extends Component {
-  state = {
-    users: [],
-    query: "",
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      users: [],
+      query: "",
+    };
+
+    // this.inputRef = React.createRef();
+  }
 
   contentEditable = React.createRef();
 
@@ -128,23 +134,10 @@ class Main extends Component {
   };
 
   textChanged = (user) => {
-    const newUser = user.id;
-    console.log(newUser);
-    if (this.state.users.includes(newUser)) {
-      const shallow = [...this.state.users];
-      const indexOfUser = shallow.indexOf(user);
-      shallow.splice(indexOfUser, 1);
-      this.setState({ users: shallow });
-    }
-
-    // const users = [...this.state.users];
-    // users[user] = user;
-    // this.setState({ users });
-    // this.setState({
-    //     users: Object.assign({}, this.state.users, {
-    //       [event.target.id]: event.target.value,
-    //     }),
-    //   });
+    const users = [...this.state.users];
+    users[user] = user;
+    this.setState({ users });
+    // });
   };
 
   render() {
@@ -166,6 +159,7 @@ class Main extends Component {
           textChanged={this.textChanged}
           contentEditable={this.contentEditable}
           html={this.state.users}
+          ref={this.inputRef}
         />
       </div>
     );
