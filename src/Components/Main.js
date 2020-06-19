@@ -9,10 +9,9 @@ class Main extends Component {
   state = {
     users: [],
     query: "",
-    html: [],
   };
 
-  //   contentEditable = React.createRef();
+  contentEditable = React.createRef();
 
   // this axios "get" request retrieves data from the supplied API and then sets the state
   componentDidMount() {
@@ -68,75 +67,88 @@ class Main extends Component {
     });
   };
 
-  //   // sortById sorts users by their Id number and then sets state.users with the new order
-  //   sortById = () => {
-  //     const sorted = [...this.state.users];
-  //     sorted.sort((a, b) => a.id - b.id);
+  // sortById sorts users by their Id number and then sets state.users with the new order
+  sortById = () => {
+    const sorted = [...this.state.users];
+    sorted.sort((a, b) => a.id - b.id);
 
-  //     this.setState({
-  //       users: sorted,
-  //     });
-  //   };
+    this.setState({
+      users: sorted,
+    });
+  };
 
-  //   // sortByIdReverse sorts users by their Id number and then sets state.users with the new order
-  //   sortByIdReverse = () => {
-  //     const sorted = [...this.state.users];
-  //     sorted.sort((a, b) => b.id - a.id);
+  // sortByIdReverse sorts users by their Id number and then sets state.users with the new order
+  sortByIdReverse = () => {
+    const sorted = [...this.state.users];
+    sorted.sort((a, b) => b.id - a.id);
 
-  //     this.setState({
-  //       users: sorted,
-  //     });
-  //   };
+    this.setState({
+      users: sorted,
+    });
+  };
 
-  //   // sortByNameAToZ sorts users alphabetically and then sets state.users with the new order
-  //   sortByNameAToZ = () => {
-  //     const sorted = [...this.state.users];
-  //     sorted.sort((a, b) => a.name.localeCompare(b.name));
+  // sortByNameAToZ sorts users alphabetically and then sets state.users with the new order
+  sortByNameAToZ = () => {
+    const sorted = [...this.state.users];
+    sorted.sort((a, b) => a.name.localeCompare(b.name));
 
-  //     this.setState({
-  //       users: sorted,
-  //     });
-  //   };
+    this.setState({
+      users: sorted,
+    });
+  };
 
-  //   // sortByNameZToA sorts users alphabetically and then sets state.users with the new order
-  //   sortByNameZToA = () => {
-  //     const sorted = [...this.state.users];
-  //     sorted.sort((a, b) => b.name.localeCompare(a.name));
+  // sortByNameZToA sorts users alphabetically and then sets state.users with the new order
+  sortByNameZToA = () => {
+    const sorted = [...this.state.users];
+    sorted.sort((a, b) => b.name.localeCompare(a.name));
 
-  //     this.setState({
-  //       users: sorted,
-  //     });
-  //   };
+    this.setState({
+      users: sorted,
+    });
+  };
 
-  //   // sortByBusinessNameAToZ sorts users alphabetically and then sets state.users with the new order
-  //   sortByBusinessNameAToZ = () => {
-  //     const sorted = [...this.state.users];
-  //     sorted.sort((a, b) => a.company.localeCompare(b.company));
+  // sortByBusinessNameAToZ sorts users alphabetically and then sets state.users with the new order
+  sortByBusinessNameAToZ = () => {
+    const sorted = [...this.state.users];
+    sorted.sort((a, b) => a.company.localeCompare(b.company));
 
-  //     this.setState({
-  //       users: sorted,
-  //     });
-  //   };
+    this.setState({
+      users: sorted,
+    });
+  };
 
-  //   // sortByBusinessNameZToA sorts users alphabetically and then sets state.users with the new order
-  //   sortByBusinessNameZToA = () => {
-  //     const sorted = [...this.state.users];
-  //     sorted.sort((a, b) => b.company.localeCompare(a.company));
+  // sortByBusinessNameZToA sorts users alphabetically and then sets state.users with the new order
+  sortByBusinessNameZToA = () => {
+    const sorted = [...this.state.users];
+    sorted.sort((a, b) => b.company.localeCompare(a.company));
 
-  //     this.setState({
-  //       users: sorted,
-  //     });
-  //   };
+    this.setState({
+      users: sorted,
+    });
+  };
 
   textChanged = (user) => {
-    const users = [...this.state.users];
-    console.log(users);
-    users[user.id] = user;
-    this.setState({ users });
+    const newUser = user.id;
+    console.log(newUser);
+    if (this.state.users.includes(newUser)) {
+      const shallow = [...this.state.users];
+      const indexOfUser = shallow.indexOf(user);
+      shallow.splice(indexOfUser, 1);
+      this.setState({ users: shallow });
+    }
+
+    // const users = [...this.state.users];
+    // users[user] = user;
+    // this.setState({ users });
+    // this.setState({
+    //     users: Object.assign({}, this.state.users, {
+    //       [event.target.id]: event.target.value,
+    //     }),
+    //   });
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.state);
 
     return (
       <div>
@@ -149,11 +161,10 @@ class Main extends Component {
         <button onClick={this.sortByBusinessNameAToZ}>Business Name ⬆</button>
         <button onClick={this.sortByBusinessNameZToA}>Business Name ⬇</button>
         <UserList
-          users={this.state.users}
           filterUsers={this.deleteUser}
           query={this.state.query}
           textChanged={this.textChanged}
-          //   contentEditable={this.contentEditable}
+          contentEditable={this.contentEditable}
           html={this.state.users}
         />
       </div>

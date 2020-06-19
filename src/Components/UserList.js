@@ -1,31 +1,27 @@
 import React from "react";
-import User from "./User";
-// import ContentEditable from "react-contenteditable";
+import TrashBin from "../Assets/images/trashBin.svg";
+import ContentEditable from "react-contenteditable";
 
 const UserList = (props) => {
   console.log(props.html);
 
-  //   // filters the users by the string typed into the search bar
-  //   const filtered = props.users.filter((user) => {
-  //     if (
-  //       user.name.toLowerCase().includes(props.query.toLowerCase()) ||
-  //       user.username.toLowerCase().includes(props.query.toLowerCase()) ||
-  //       user.address.toLowerCase().includes(props.query.toLowerCase()) ||
-  //       user.company.toLowerCase().includes(props.query.toLowerCase()) ||
-  //       user.email.toLowerCase().includes(props.query.toLowerCase()) ||
-  //       user.phone.toLowerCase().includes(props.query.toLowerCase()) ||
-  //       user.website.toLowerCase().includes(props.query.toLowerCase())
-  //     ) {
-  //       return true;
-  //     }
-  //     return null;
-  //   });
+  // filters the users by the string typed into the search bar
+  const filtered = props.html.filter((user) => {
+    if (
+      user.name.toLowerCase().includes(props.query.toLowerCase()) ||
+      user.username.toLowerCase().includes(props.query.toLowerCase()) ||
+      user.address.toLowerCase().includes(props.query.toLowerCase()) ||
+      user.company.toLowerCase().includes(props.query.toLowerCase()) ||
+      user.email.toLowerCase().includes(props.query.toLowerCase()) ||
+      user.phone.toLowerCase().includes(props.query.toLowerCase()) ||
+      user.website.toLowerCase().includes(props.query.toLowerCase())
+    ) {
+      return true;
+    }
+    return null;
+  });
 
   console.log(props);
-
-  const sortThings = (a, b) => {
-    return b.match(/\d+/)[0] - a.match(/\d+/)[0];
-  };
 
   return (
     <table
@@ -47,22 +43,102 @@ const UserList = (props) => {
         </tr>
       </thead>
       <tbody>
-        {Object.keys(props.users)
-          .sort(sortThings)
-          .map(
-            (userId) => (
-              console.log(userId),
-              (
-                <User
-                  user={userId}
-                  users={props.users}
-                  query={props.query}
-                  //   filtered={filtered}
-                  textChanged={props.textChanged}
+        {/* maps over the users which remain relevant to the string typed into the search bar */}
+        {filtered.map((user) => {
+          {
+            /* const updateCell = (event) => {
+            user = event.target.value;
+            props.textChanged(user);
+            console.log(user);
+          }; */
+          }
+          const ref = props.contentEditable;
+
+          return (
+            <tr key={user.id} style={{ marginBottom: "100px" }}>
+              <td>{user.id}</td>
+              <td>
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    onChange={() => props.textChanged(user)}
+                    html={user.name}
+                  />
+                </div>
+              </td>
+              <td>
+                <ContentEditable
+                  innerRef={props.contentEditable}
+                  disabled={false}
+                  //   onChange={updateCell}
+                  html={user.company}
                 />
-              )
-            )
-          )}
+              </td>
+              <td>
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    html={user.address}
+                  />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    html={user.email}
+                  />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    html={user.phone}
+                  />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    html={user.username}
+                  />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    html={user.website}
+                  />
+                </div>
+              </td>
+              <td>
+                {/* this onClick triggers the deleteUser method in Main.js, thus removing the user from the list */}
+                <button>
+                  <img
+                    src={TrashBin}
+                    alt="delete icon"
+                    onClick={() => props.filterUsers(user.id)}
+                  />
+                </button>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
