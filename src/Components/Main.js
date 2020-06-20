@@ -46,11 +46,9 @@ class Main extends Component {
             ", " +
             el.address.zipcode +
             " " +
-            el.address.city +
-            ", lat:" +
-            el.address.geo.lat +
-            ", lng:" +
-            el.address.geo.lng;
+            el.address.city;
+          newObj.latLng =
+            "lat: " + el.address.geo.lat + ", lng:" + el.address.geo.lng;
           return newObj;
         })
         .flat();

@@ -142,6 +142,14 @@ const UserList = (props) => {
                     onChange={() => props.textChanged(user.address)}
                     html={user.address}
                   />
+
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    onChange={() => props.textChanged(user.address)}
+                    html={user.latLng}
+                  />
                 </div>
               </td>
               <td>
