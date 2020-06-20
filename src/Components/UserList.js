@@ -1,6 +1,13 @@
 import React from "react";
-import TrashBin from "../Assets/images/trashBin.svg";
 import ContentEditable from "react-contenteditable";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+// import Card.Header from "react-bootstrap/Card.Header";
+// import Accordion.Toggle from "react-bootstrap/Accordion.Toggle";
+// import Accordion.Collapse from "react-bootstrap/Accordion.Collapse";
+// import Card.Body from "react-bootstrap/Card.Body";
 
 const UserList = (props) => {
   console.log(props.html);
@@ -24,22 +31,17 @@ const UserList = (props) => {
   console.log(props);
 
   return (
-    <table
-      style={{
-        marginLeft: "10%",
-        transform: "translate(-5%)",
-      }}
-    >
+    <Table responsive borderless hover size="sm">
       <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Address</th>
+          <th>Username</th>
           <th>Company</th>
+          <th>Website</th>
           <th>Email</th>
           <th>Phone</th>
-          <th>Username</th>
-          <th>Website</th>
+          <th>Address</th>
         </tr>
       </thead>
       <tbody>
@@ -69,13 +71,54 @@ const UserList = (props) => {
                 </div>
               </td>
               <td>
-                <ContentEditable
-                  innerRef={props.contentEditable}
-                  disabled={false}
-                  //   onChange={updateCell}
-                  onChange={() => props.textChanged(user.company)}
-                  html={user.company}
-                />
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    // onChange={updateCell}
+                    onChange={() => props.textChanged(user.username)}
+                    html={user.username}
+                  />
+                </div>
+              </td>
+              <td>
+                <Accordion>
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="light"
+                        eventKey="0"
+                      >
+                        <ContentEditable
+                          innerRef={props.contentEditable}
+                          disabled={false}
+                          //   onChange={updateCell}
+                          onChange={() => props.textChanged(user.company)}
+                          html={user.company}
+                        />
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0">
+                      <Card.Body>
+                        <ContentEditable
+                          innerRef={props.contentEditable}
+                          disabled={false}
+                          //   onChange={updateCell}
+                          onChange={() => props.textChanged(user.catchPhrase)}
+                          html={user.catchPhrase}
+                        />
+                        <ContentEditable
+                          innerRef={props.contentEditable}
+                          disabled={false}
+                          //   onChange={updateCell}
+                          onChange={() => props.textChanged(user.bs)}
+                          html={user.bs}
+                        />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
               </td>
               <td>
                 <div>
@@ -83,8 +126,8 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
-                    onChange={() => props.textChanged(user.address)}
-                    html={user.address}
+                    onChange={() => props.textChanged(user.website)}
+                    html={user.website}
                   />
                 </div>
               </td>
@@ -116,37 +159,27 @@ const UserList = (props) => {
                     innerRef={props.contentEditable}
                     disabled={false}
                     // onChange={updateCell}
-                    onChange={() => props.textChanged(user.username)}
-                    html={user.username}
+                    onChange={() => props.textChanged(user.address)}
+                    html={user.address}
                   />
                 </div>
               </td>
               <td>
-                <div>
-                  <ContentEditable
-                    innerRef={props.contentEditable}
-                    disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.website)}
-                    html={user.website}
-                  />
-                </div>
-              </td>
-              <td>
-                {/* this onClick triggers the deleteUser method in Main.js, thus removing the user from the list */}
-                <button>
-                  <img
-                    src={TrashBin}
-                    alt="delete icon"
+                <>
+                  {/* this onClick triggers the deleteUser method in Main.js, thus removing the user from the list */}
+                  <Button
+                    variant="outline-danger"
                     onClick={() => props.filterUsers(user.id)}
-                  />
-                </button>
+                  >
+                    X
+                  </Button>
+                </>
               </td>
             </tr>
           );
         })}
       </tbody>
-    </table>
+    </Table>
   );
 };
 

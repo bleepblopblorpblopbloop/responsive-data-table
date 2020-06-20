@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from "react-bootstrap/Container";
 
 // components
 import UserList from "../Components/UserList";
@@ -12,6 +15,7 @@ class Main extends Component {
     this.state = {
       users: [],
       query: "",
+      sortAscending: true,
     };
 
     // this.inputRef = React.createRef();
@@ -29,12 +33,9 @@ class Main extends Component {
           newObj.id = el.id;
           newObj.name = el.name;
           newObj.username = el.username;
-          newObj.company =
-            el.company.name +
-            ", " +
-            el.company.bs +
-            ", " +
-            el.company.catchPhrase;
+          newObj.company = el.company.name;
+          newObj.bs = el.company.bs;
+          newObj.catchPhrase = el.company.catchPhrase;
           newObj.website = el.website;
           newObj.email = el.email;
           newObj.phone = el.phone;
@@ -76,49 +77,50 @@ class Main extends Component {
   // sortById sorts users by their Id number and then sets state.users with the new order
   sortById = () => {
     const sorted = [...this.state.users];
-    sorted.sort((a, b) => a.id - b.id);
-
-    this.setState({
-      users: sorted,
+    sorted.sort((a, b) => {
+      if (this.state.sortAscending) {
+        return a.id - b.id;
+      } else {
+        return b.id - a.id;
+      }
     });
-  };
-
-  // sortByIdReverse sorts users by their Id number and then sets state.users with the new order
-  sortByIdReverse = () => {
-    const sorted = [...this.state.users];
-    sorted.sort((a, b) => b.id - a.id);
 
     this.setState({
+      sortAscending: !this.state.sortAscending,
       users: sorted,
     });
   };
 
   // sortByNameAToZ sorts users alphabetically and then sets state.users with the new order
-  sortByNameAToZ = () => {
+  sortByName = () => {
     const sorted = [...this.state.users];
-    sorted.sort((a, b) => a.name.localeCompare(b.name));
-
-    this.setState({
-      users: sorted,
+    sorted.sort((a, b) => {
+      if (this.state.sortAscending) {
+        return a.id - b.id;
+      } else {
+        return b.id - a.id;
+      }
     });
-  };
-
-  // sortByNameZToA sorts users alphabetically and then sets state.users with the new order
-  sortByNameZToA = () => {
-    const sorted = [...this.state.users];
-    sorted.sort((a, b) => b.name.localeCompare(a.name));
 
     this.setState({
+      sortAscending: !this.state.sortAscending,
       users: sorted,
     });
   };
 
   // sortByBusinessNameAToZ sorts users alphabetically and then sets state.users with the new order
-  sortByBusinessNameAToZ = () => {
+  sortByBusinessName = () => {
     const sorted = [...this.state.users];
-    sorted.sort((a, b) => a.company.localeCompare(b.company));
+    sorted.sort((a, b) => {
+      if (this.state.sortAscending) {
+        return a.company.localeCompare(b.company);
+      } else {
+        return b.company.localeCompare(a.company);
+      }
+    });
 
     this.setState({
+      sortAscending: !this.state.sortAscending,
       users: sorted,
     });
   };
@@ -145,14 +147,30 @@ class Main extends Component {
 
     return (
       <div>
-        <h1>GrapeAlliance Coding Task</h1>
+        <Jumbotron fluid>
+          <Container>
+            <div>
+              <img
+                src="../Assets/images/grapes.svg"
+                alt="grapes"
+                width="500"
+                height="600"
+              ></img>
+              <h1>GrapeAlliance Coding Task</h1>
+            </div>
+          </Container>
+        </Jumbotron>
         <SearchBar setQuery={this.setQuery} query={this.state.query} />
-        <button onClick={this.sortById}>User Id ⬆</button>
-        <button onClick={this.sortByIdReverse}>User Id ⬇</button>
-        <button onClick={this.sortByNameAToZ}>Name ⬆</button>
-        <button onClick={this.sortByNameZToA}>Name ⬇</button>
-        <button onClick={this.sortByBusinessNameAToZ}>Business Name ⬆</button>
-        <button onClick={this.sortByBusinessNameZToA}>Business Name ⬇</button>
+        <Button variant="outline-secondary" onClick={this.sortById}>
+          User Id
+        </Button>
+        <Button variant="outline-secondary" onClick={this.sortByName}>
+          Name
+        </Button>
+        <Button variant="outline-secondary" onClick={this.sortByBusinessName}>
+          Company
+        </Button>
+
         <UserList
           filterUsers={this.deleteUser}
           query={this.state.query}
