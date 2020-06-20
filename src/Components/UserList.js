@@ -125,6 +125,7 @@ const UserList = (props) => {
                     html={user.address}
                   />
                   <ContentEditable
+                    className="bolder-text"
                     disabled={false}
                     onChange={(evt) => props.textChanged(evt, "city", user.id)}
                     html={user.city}
