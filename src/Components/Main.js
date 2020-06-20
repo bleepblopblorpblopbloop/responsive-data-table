@@ -31,13 +31,13 @@ class Main extends Component {
           newObj.name = el.name;
           newObj.username = el.username;
           newObj.company = el.company.name;
-          newObj.bs = el.company.bs;
           newObj.catchPhrase = el.company.catchPhrase;
+          newObj.bs = el.company.bs;
           newObj.website = el.website;
           newObj.email = el.email;
           newObj.phone = el.phone;
           newObj.address = el.address.suite + ", " + el.address.street;
-          newObj.city = el.address.zipcode + ", " + el.address.city;
+          newObj.city = el.address.city + ", " + el.address.zipcode;
           newObj.latLng =
             "lat: " + el.address.geo.lat + ", lng:" + el.address.geo.lng;
           return newObj;
@@ -80,14 +80,16 @@ class Main extends Component {
     });
   };
 
-  // sortByNameAToZ sorts users alphabetically and then sets state.users with the new order
-  sortByName = () => {
+  // dynamicSort sorts users alphabetically and then sets state.users with the new order
+  dynamicSort = (evt) => {
+    const word = evt.target.innerText.toLowerCase();
+    console.log(word);
     const sorted = [...this.state.users];
     sorted.sort((a, b) => {
       if (this.state.sortAscending) {
-        return a.name.localeCompare(b.name);
+        return a[word].localeCompare(b[word]);
       } else {
-        return b.name.localeCompare(a.name);
+        return b[word].localeCompare(a[word]);
       }
     });
 
@@ -97,31 +99,14 @@ class Main extends Component {
     });
   };
 
-  // sortByNameAToZ sorts users alphabetically and then sets state.users with the new order
-  sortByUsername = () => {
+  // sortByPhone sorts users by their Id number and then sets state.users with the new order
+  sortByPhone = () => {
     const sorted = [...this.state.users];
     sorted.sort((a, b) => {
       if (this.state.sortAscending) {
-        return a.username.localeCompare(b.username);
+        return a.phone - b.phone;
       } else {
-        return b.username.localeCompare(a.username);
-      }
-    });
-
-    this.setState({
-      sortAscending: !this.state.sortAscending,
-      users: sorted,
-    });
-  };
-
-  // sortByBusinessNameAToZ sorts users alphabetically and then sets state.users with the new order
-  sortByBusinessName = () => {
-    const sorted = [...this.state.users];
-    sorted.sort((a, b) => {
-      if (this.state.sortAscending) {
-        return a.company.localeCompare(b.company);
-      } else {
-        return b.company.localeCompare(a.company);
+        return b.phone - a.phone;
       }
     });
 
@@ -132,7 +117,7 @@ class Main extends Component {
   };
 
   /**
-   * Function to update state with new field value from cintentEditable field
+   * Function to update state with new field value from contentEditable field
    * @param {object} evt - the target event property returns the element that triggered the event
    * @param {string} field - item field name from a specific object in users array
    * @param {number} id - item id of the target element
@@ -174,7 +159,7 @@ class Main extends Component {
                 className="btn"
                 variant="outline-light"
                 size="sm"
-                onClick={this.sortByName}
+                onClick={this.dynamicSort}
               >
                 Name
               </Button>
@@ -182,7 +167,7 @@ class Main extends Component {
                 className="btn"
                 variant="outline-light"
                 size="sm"
-                onClick={this.sortByUsername}
+                onClick={this.dynamicSort}
               >
                 Username
               </Button>
@@ -190,7 +175,7 @@ class Main extends Component {
                 className="btn"
                 variant="outline-light"
                 size="sm"
-                onClick={this.sortByBusinessName}
+                onClick={this.dynamicSort}
               >
                 Company
               </Button>
@@ -198,7 +183,7 @@ class Main extends Component {
                 className="btn"
                 variant="outline-light"
                 size="sm"
-                onClick={this.sortByWebsite}
+                onClick={this.dynamicSort}
               >
                 Website
               </Button>
@@ -206,7 +191,7 @@ class Main extends Component {
                 className="btn"
                 variant="outline-light"
                 size="sm"
-                onClick={this.sortByEmail}
+                onClick={this.dynamicSort}
               >
                 Email
               </Button>
@@ -222,9 +207,9 @@ class Main extends Component {
                 className="btn"
                 variant="outline-light"
                 size="sm"
-                onClick={this.sortByAddress}
+                onClick={this.dynamicSort}
               >
-                Company
+                City
               </Button>
             </div>
           </div>
