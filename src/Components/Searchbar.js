@@ -10,12 +10,13 @@ class Searchbar extends Component {
   };
 
   render() {
-    console.log(this.props);
+    const { query } = this.props;
+
     return (
       <div className="search-container">
         <InputGroup
           // size="lg"
-          value={this.props.query}
+          value={query}
           onChange={this.handleChange}
         >
           <FormControl

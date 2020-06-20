@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
 
 // stylesheets
 import "../Assets/stylesheets/Main.css";
 
 // components
-import UserList from "../Components/UserList";
-import SearchBar from "../Components/Searchbar";
+import UserList from "./UserList";
+import SearchBar from "./Searchbar";
 import LogoTag from "./LogoTag";
+import SortButtons from "./SortButtons";
 
 class Main extends Component {
   constructor(props) {
@@ -80,16 +80,17 @@ class Main extends Component {
     });
   };
 
-  // dynamicSort sorts users alphabetically and then sets state.users with the new order
-  dynamicSort = (evt) => {
-    const word = evt.target.innerText.toLowerCase();
-    console.log(word);
+  /** 
+  // Function to sort table columns alphabetically and then set state.users with the new order
+  * @param {string} field - item field name from a specific object in users array
+  */
+  dynamicSort = (field) => {
     const sorted = [...this.state.users];
     sorted.sort((a, b) => {
       if (this.state.sortAscending) {
-        return a[word].localeCompare(b[word]);
+        return a[field].localeCompare(b[field]);
       } else {
-        return b[word].localeCompare(a[word]);
+        return b[field].localeCompare(a[field]);
       }
     });
 
@@ -106,7 +107,6 @@ class Main extends Component {
     sorted.sort((a, b) => {
       const aOnlyXLeft = a.phone.replace(/[^\dx]/g, "");
       const bOnlyXLeft = b.phone.replace(/[^\dx]/g, "");
-
       const newA = aOnlyXLeft.substr(0, aOnlyXLeft.indexOf("x"));
       const newB = bOnlyXLeft.substr(0, bOnlyXLeft.indexOf("x"));
 
@@ -124,9 +124,9 @@ class Main extends Component {
   };
 
   /**
-   * Function to update state with new field value from contentEditable field
+   // Function to update state with new field value from contentEditable field
    * @param {object} evt - the target event property returns the element that triggered the event
-   * @param {string} field - item field name from a specific object in users array
+   * @param {string} field- item field name from a specific object in users array
    * @param {number} id - item id of the target element
    */
   textChanged = (evt, field, id) => {
@@ -144,8 +144,7 @@ class Main extends Component {
   };
 
   render() {
-    console.log(this.state);
-
+    const { query, users } = this.state;
     return (
       <div className="main">
         <React.Fragment>
@@ -155,78 +154,25 @@ class Main extends Component {
               <SearchBar
                 className="search-bar"
                 setQuery={this.setQuery}
-                query={this.state.query}
+                query={query}
               />
             </div>
             <div className="button-container">
-              <Button variant="outline-light" size="sm" onClick={this.sortById}>
-                User Id
-              </Button>
-              <Button
-                className="btn"
-                variant="outline-light"
-                size="sm"
-                onClick={this.dynamicSort}
-              >
-                Name
-              </Button>
-              <Button
-                className="btn"
-                variant="outline-light"
-                size="sm"
-                onClick={this.dynamicSort}
-              >
-                Username
-              </Button>
-              <Button
-                className="btn"
-                variant="outline-light"
-                size="sm"
-                onClick={this.dynamicSort}
-              >
-                Company
-              </Button>
-              <Button
-                className="btn"
-                variant="outline-light"
-                size="sm"
-                onClick={this.dynamicSort}
-              >
-                Website
-              </Button>
-              <Button
-                className="btn"
-                variant="outline-light"
-                size="sm"
-                onClick={this.dynamicSort}
-              >
-                Email
-              </Button>
-              <Button
-                className="btn"
-                variant="outline-light"
-                size="sm"
-                onClick={this.sortByPhone}
-              >
-                Phone
-              </Button>
-              <Button
-                className="btn"
-                variant="outline-light"
-                size="sm"
-                onClick={this.dynamicSort}
-              >
-                City
-              </Button>
+              <SortButtons
+                users={users}
+                sortById={this.sortById}
+                dynamicSort={this.dynamicSort}
+                sortByPhone={this.sortByPhone}
+              />
             </div>
           </div>
         </React.Fragment>
         <div className="user-list-container">
           <UserList
             filterUsers={this.deleteUser}
-            query={this.state.query}
+            query={query}
             textChanged={this.textChanged}
-            html={this.state.users}
+            html={users}
           />
         </div>
       </div>

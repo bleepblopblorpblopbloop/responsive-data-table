@@ -5,16 +5,18 @@ import Button from "react-bootstrap/Button";
 import "../Assets/stylesheets/UserList.css";
 
 const UserList = (props) => {
+  const { html, query } = props;
+
   // filters the users by the string typed into the search bar
-  const filtered = props.html.filter((user) => {
+  const filtered = html.filter((user) => {
     if (
-      user.name.toLowerCase().includes(props.query.toLowerCase()) ||
-      user.username.toLowerCase().includes(props.query.toLowerCase()) ||
-      user.address.toLowerCase().includes(props.query.toLowerCase()) ||
-      user.company.toLowerCase().includes(props.query.toLowerCase()) ||
-      user.email.toLowerCase().includes(props.query.toLowerCase()) ||
-      user.phone.toLowerCase().includes(props.query.toLowerCase()) ||
-      user.website.toLowerCase().includes(props.query.toLowerCase())
+      user.name.toLowerCase().includes(query.toLowerCase()) ||
+      user.username.toLowerCase().includes(query.toLowerCase()) ||
+      user.address.toLowerCase().includes(query.toLowerCase()) ||
+      user.company.toLowerCase().includes(query.toLowerCase()) ||
+      user.email.toLowerCase().includes(query.toLowerCase()) ||
+      user.phone.toLowerCase().includes(query.toLowerCase()) ||
+      user.website.toLowerCase().includes(query.toLowerCase())
     ) {
       return true;
     }
