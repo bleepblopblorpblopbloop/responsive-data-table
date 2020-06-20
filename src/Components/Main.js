@@ -97,6 +97,23 @@ class Main extends Component {
     });
   };
 
+  // sortByNameAToZ sorts users alphabetically and then sets state.users with the new order
+  sortByUsername = () => {
+    const sorted = [...this.state.users];
+    sorted.sort((a, b) => {
+      if (this.state.sortAscending) {
+        return a.username.localeCompare(b.username);
+      } else {
+        return b.username.localeCompare(a.username);
+      }
+    });
+
+    this.setState({
+      sortAscending: !this.state.sortAscending,
+      users: sorted,
+    });
+  };
+
   // sortByBusinessNameAToZ sorts users alphabetically and then sets state.users with the new order
   sortByBusinessName = () => {
     const sorted = [...this.state.users];
@@ -154,6 +171,7 @@ class Main extends Component {
                 User Id
               </Button>
               <Button
+                className="btn"
                 variant="outline-light"
                 size="sm"
                 onClick={this.sortByName}
@@ -161,9 +179,50 @@ class Main extends Component {
                 Name
               </Button>
               <Button
+                className="btn"
+                variant="outline-light"
+                size="sm"
+                onClick={this.sortByUsername}
+              >
+                Username
+              </Button>
+              <Button
+                className="btn"
                 variant="outline-light"
                 size="sm"
                 onClick={this.sortByBusinessName}
+              >
+                Company
+              </Button>
+              <Button
+                className="btn"
+                variant="outline-light"
+                size="sm"
+                onClick={this.sortByWebsite}
+              >
+                Website
+              </Button>
+              <Button
+                className="btn"
+                variant="outline-light"
+                size="sm"
+                onClick={this.sortByEmail}
+              >
+                Email
+              </Button>
+              <Button
+                className="btn"
+                variant="outline-light"
+                size="sm"
+                onClick={this.sortByPhone}
+              >
+                Phone
+              </Button>
+              <Button
+                className="btn"
+                variant="outline-light"
+                size="sm"
+                onClick={this.sortByAddress}
               >
                 Company
               </Button>
