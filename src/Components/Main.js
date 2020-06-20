@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Container from "react-bootstrap/Container";
+
+// style sheets
+import "../Assets/stylesheets/Main.css";
 
 // components
 import UserList from "../Components/UserList";
 import SearchBar from "../Components/Searchbar";
+import LogoTag from "./LogoTag";
 
 class Main extends Component {
   constructor(props) {
@@ -15,13 +17,8 @@ class Main extends Component {
     this.state = {
       users: [],
       query: "",
-      sortAscending: true,
     };
-
-    // this.inputRef = React.createRef();
   }
-
-  contentEditable = React.createRef();
 
   // this axios "get" request retrieves data from the supplied API and then sets the state
   componentDidMount() {
@@ -94,9 +91,9 @@ class Main extends Component {
     const sorted = [...this.state.users];
     sorted.sort((a, b) => {
       if (this.state.sortAscending) {
-        return a.id - b.id;
+        return a.name.localeCompare(b.name);
       } else {
-        return b.id - a.id;
+        return b.name.localeCompare(a.name);
       }
     });
 
@@ -123,49 +120,40 @@ class Main extends Component {
     });
   };
 
-  // sortByBusinessNameZToA sorts users alphabetically and then sets state.users with the new order
-  sortByBusinessNameZToA = () => {
-    const sorted = [...this.state.users];
-    sorted.sort((a, b) => b.company.localeCompare(a.company));
-
-    this.setState({
-      users: sorted,
+  /**
+   * Function to update state with new field value from cintentEditable field
+   * @param {object} evt - the target event property returns the element that triggered the event
+   * @param {string} field - item field name from a specific object in users array
+   * @param {number} id - item id of the target element
+   */
+  textChanged = (evt, field, id) => {
+    this.setState((prevState) => {
+      return {
+        users: prevState.users.map((item) => {
+          if (item.id === id) {
+            return { ...item, [field]: evt.target.value };
+          } else {
+            return item;
+          }
+        }),
+      };
     });
-  };
-
-  textChanged = (user) => {
-    const users = [...this.state.users];
-    users[user] = user;
-    this.setState({ users });
-    // });
   };
 
   render() {
     console.log(this.state);
 
     return (
-      <div>
-        <Jumbotron fluid>
-          <Container>
-            <div>
-              <img
-                src="../Assets/images/grapes.svg"
-                alt="grapes"
-                width="500"
-                height="600"
-              ></img>
-              <h1>GrapeAlliance Coding Task</h1>
-            </div>
-          </Container>
-        </Jumbotron>
+      <div className="main">
+        <LogoTag />
         <SearchBar setQuery={this.setQuery} query={this.state.query} />
-        <Button variant="outline-secondary" onClick={this.sortById}>
+        <Button variant="outline-light" onClick={this.sortById}>
           User Id
         </Button>
-        <Button variant="outline-secondary" onClick={this.sortByName}>
+        <Button variant="outline-light" onClick={this.sortByName}>
           Name
         </Button>
-        <Button variant="outline-secondary" onClick={this.sortByBusinessName}>
+        <Button variant="outline-light" onClick={this.sortByBusinessName}>
           Company
         </Button>
 
@@ -173,9 +161,7 @@ class Main extends Component {
           filterUsers={this.deleteUser}
           query={this.state.query}
           textChanged={this.textChanged}
-          contentEditable={this.contentEditable}
           html={this.state.users}
-          ref={this.inputRef}
         />
       </div>
     );

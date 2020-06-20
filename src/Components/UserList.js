@@ -2,10 +2,9 @@ import React from "react";
 import ContentEditable from "react-contenteditable";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import "../Assets/stylesheets/UserList.css";
 
 const UserList = (props) => {
-  console.log(props.html);
-
   // filters the users by the string typed into the search bar
   const filtered = props.html.filter((user) => {
     if (
@@ -22,10 +21,8 @@ const UserList = (props) => {
     return null;
   });
 
-  console.log(props);
-
   return (
-    <Table responsive borderless hover size="sm">
+    <Table className="table" responsive borderless hover size="sm">
       <thead>
         <tr>
           <th>ID</th>
@@ -41,36 +38,25 @@ const UserList = (props) => {
       <tbody>
         {/* maps over the users which remain relevant to the string typed into the search bar */}
         {filtered.map((user) => {
-          /* const updateCell = (event) => {
-            user = event.target.value;
-            props.textChanged(user);
-            console.log(user);
-          }; */
-
-          const ref = props.contentEditable;
-
           return (
             <tr key={user.id} style={{ marginBottom: "100px" }}>
               <td>{user.id}</td>
               <td>
                 <div>
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.name)}
+                    onChange={(evt) => props.textChanged(evt, "name", user.id)}
                     html={user.name}
-                    ref={ref}
                   />
                 </div>
               </td>
               <td>
                 <div>
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.username)}
+                    onChange={(evt) =>
+                      props.textChanged(evt, "username", user.id)
+                    }
                     html={user.username}
                   />
                 </div>
@@ -78,24 +64,22 @@ const UserList = (props) => {
               <td>
                 <div>
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    //   onChange={updateCell}
-                    onChange={() => props.textChanged(user.company)}
+                    onChange={(evt) =>
+                      props.textChanged(evt, "company", user.id)
+                    }
                     html={user.company}
                   />
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    //   onChange={updateCell}
-                    onChange={() => props.textChanged(user.catchPhrase)}
+                    onChange={(evt) =>
+                      props.textChanged(evt, "catchPhrase", user.id)
+                    }
                     html={user.catchPhrase}
                   />
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    //   onChange={updateCell}
-                    onChange={() => props.textChanged(user.bs)}
+                    onChange={(evt) => props.textChanged(evt, "bs", user.id)}
                     html={user.bs}
                   />
                 </div>
@@ -103,10 +87,10 @@ const UserList = (props) => {
               <td>
                 <div>
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.website)}
+                    onChange={(evt) =>
+                      props.textChanged(evt, "website", user.id)
+                    }
                     html={user.website}
                   />
                 </div>
@@ -114,10 +98,8 @@ const UserList = (props) => {
               <td>
                 <div>
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.email)}
+                    onChange={(evt) => props.textChanged(evt, "email", user.id)}
                     html={user.email}
                   />
                 </div>
@@ -125,10 +107,8 @@ const UserList = (props) => {
               <td>
                 <div>
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.phone)}
+                    onChange={(evt) => props.textChanged(evt, "phone", user.id)}
                     html={user.phone}
                   />
                 </div>
@@ -136,18 +116,18 @@ const UserList = (props) => {
               <td>
                 <div>
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.address)}
+                    onChange={(evt) =>
+                      props.textChanged(evt, "address", user.id)
+                    }
                     html={user.address}
                   />
 
                   <ContentEditable
-                    innerRef={props.contentEditable}
                     disabled={false}
-                    // onChange={updateCell}
-                    onChange={() => props.textChanged(user.address)}
+                    onChange={(evt) =>
+                      props.textChanged(evt, "latlng", user.id)
+                    }
                     html={user.latLng}
                   />
                 </div>
