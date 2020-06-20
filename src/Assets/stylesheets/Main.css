@@ -19,3 +19,10 @@
   justify-content: center;
   margin-bottom: 10px;
 }
+
+.user-list-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 50px 0 50px;
+}

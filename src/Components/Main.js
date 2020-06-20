@@ -36,14 +36,8 @@ class Main extends Component {
           newObj.website = el.website;
           newObj.email = el.email;
           newObj.phone = el.phone;
-          newObj.address =
-            el.address.suite +
-            ", " +
-            el.address.street +
-            ", " +
-            el.address.zipcode +
-            " " +
-            el.address.city;
+          newObj.address = el.address.suite + ", " + el.address.street;
+          newObj.city = el.address.zipcode + ", " + el.address.city;
           newObj.latLng =
             "lat: " + el.address.geo.lat + ", lng:" + el.address.geo.lng;
           return newObj;
@@ -176,13 +170,14 @@ class Main extends Component {
             </div>
           </div>
         </React.Fragment>
-
-        <UserList
-          filterUsers={this.deleteUser}
-          query={this.state.query}
-          textChanged={this.textChanged}
-          html={this.state.users}
-        />
+        <div className="user-list-container">
+          <UserList
+            filterUsers={this.deleteUser}
+            query={this.state.query}
+            textChanged={this.textChanged}
+            html={this.state.users}
+          />
+        </div>
       </div>
     );
   }

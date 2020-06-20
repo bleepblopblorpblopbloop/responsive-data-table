@@ -22,20 +22,20 @@ const UserList = (props) => {
   });
 
   return (
-    <Table className="table" responsive borderless size="sm">
+    <Table className="table" responsive="sm" borderless size="sm">
       <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Company</th>
-          <th>Website</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Address</th>
+        <tr className="column-heading-row">
+          <th className="column-headings">ID</th>
+          <th className="column-headings">Name</th>
+          <th className="column-headings">Username</th>
+          <th className="column-headings">Company</th>
+          <th className="column-headings">Website</th>
+          <th className="column-headings">Email</th>
+          <th className="column-headings">Phone</th>
+          <th className="column-headings">Address</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="table-body">
         {/* maps over the users which remain relevant to the string typed into the search bar */}
         {filtered.map((user) => {
           return (
@@ -71,6 +71,7 @@ const UserList = (props) => {
                     html={user.company}
                   />
                   <ContentEditable
+                    className="shrunken-text"
                     disabled={false}
                     onChange={(evt) =>
                       props.textChanged(evt, "catchPhrase", user.id)
@@ -78,6 +79,7 @@ const UserList = (props) => {
                     html={user.catchPhrase}
                   />
                   <ContentEditable
+                    className="shrunken-text"
                     disabled={false}
                     onChange={(evt) => props.textChanged(evt, "bs", user.id)}
                     html={user.bs}
@@ -122,8 +124,13 @@ const UserList = (props) => {
                     }
                     html={user.address}
                   />
-
                   <ContentEditable
+                    disabled={false}
+                    onChange={(evt) => props.textChanged(evt, "city", user.id)}
+                    html={user.city}
+                  />
+                  <ContentEditable
+                    className="shrunken-text"
                     disabled={false}
                     onChange={(evt) =>
                       props.textChanged(evt, "latlng", user.id)
@@ -136,7 +143,8 @@ const UserList = (props) => {
                 <>
                   {/* this onClick triggers the deleteUser method in Main.js, thus removing the user from the list */}
                   <Button
-                    variant="outline-danger"
+                    variant="danger"
+                    size="sm"
                     onClick={() => props.filterUsers(user.id)}
                   >
                     X
