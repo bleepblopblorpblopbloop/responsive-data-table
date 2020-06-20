@@ -2,12 +2,6 @@ import React from "react";
 import ContentEditable from "react-contenteditable";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
-// import Card.Header from "react-bootstrap/Card.Header";
-// import Accordion.Toggle from "react-bootstrap/Accordion.Toggle";
-// import Accordion.Collapse from "react-bootstrap/Accordion.Collapse";
-// import Card.Body from "react-bootstrap/Card.Body";
 
 const UserList = (props) => {
   console.log(props.html);
@@ -82,43 +76,29 @@ const UserList = (props) => {
                 </div>
               </td>
               <td>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle
-                        as={Button}
-                        variant="light"
-                        eventKey="0"
-                      >
-                        <ContentEditable
-                          innerRef={props.contentEditable}
-                          disabled={false}
-                          //   onChange={updateCell}
-                          onChange={() => props.textChanged(user.company)}
-                          html={user.company}
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        <ContentEditable
-                          innerRef={props.contentEditable}
-                          disabled={false}
-                          //   onChange={updateCell}
-                          onChange={() => props.textChanged(user.catchPhrase)}
-                          html={user.catchPhrase}
-                        />
-                        <ContentEditable
-                          innerRef={props.contentEditable}
-                          disabled={false}
-                          //   onChange={updateCell}
-                          onChange={() => props.textChanged(user.bs)}
-                          html={user.bs}
-                        />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
+                <div>
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    //   onChange={updateCell}
+                    onChange={() => props.textChanged(user.company)}
+                    html={user.company}
+                  />
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    //   onChange={updateCell}
+                    onChange={() => props.textChanged(user.catchPhrase)}
+                    html={user.catchPhrase}
+                  />
+                  <ContentEditable
+                    innerRef={props.contentEditable}
+                    disabled={false}
+                    //   onChange={updateCell}
+                    onChange={() => props.textChanged(user.bs)}
+                    html={user.bs}
+                  />
+                </div>
               </td>
               <td>
                 <div>
