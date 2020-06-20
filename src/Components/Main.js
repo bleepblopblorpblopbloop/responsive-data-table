@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 
-// style sheets
+// stylesheets
 import "../Assets/stylesheets/Main.css";
 
 // components
@@ -145,17 +145,23 @@ class Main extends Component {
 
     return (
       <div className="main">
-        <LogoTag />
-        <SearchBar setQuery={this.setQuery} query={this.state.query} />
-        <Button variant="outline-light" onClick={this.sortById}>
-          User Id
-        </Button>
-        <Button variant="outline-light" onClick={this.sortByName}>
-          Name
-        </Button>
-        <Button variant="outline-light" onClick={this.sortByBusinessName}>
-          Company
-        </Button>
+        <React.Fragment>
+          <div>
+            <div className="logo-search-container">
+              <LogoTag />
+              <SearchBar setQuery={this.setQuery} query={this.state.query} />
+            </div>
+            <Button variant="outline-light" onClick={this.sortById}>
+              User Id
+            </Button>
+            <Button variant="outline-light" onClick={this.sortByName}>
+              Name
+            </Button>
+            <Button variant="outline-light" onClick={this.sortByBusinessName}>
+              Company
+            </Button>
+          </div>
+        </React.Fragment>
 
         <UserList
           filterUsers={this.deleteUser}
