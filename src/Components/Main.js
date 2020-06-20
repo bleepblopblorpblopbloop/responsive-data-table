@@ -99,14 +99,21 @@ class Main extends Component {
     });
   };
 
-  // sortByPhone sorts users by their Id number and then sets state.users with the new order
+  // sortByPhone sorts users by their phone number, starting with the area code, and then sets state.users with the new order
   sortByPhone = () => {
     const sorted = [...this.state.users];
+
     sorted.sort((a, b) => {
+      const aOnlyXLeft = a.phone.replace(/[^\dx]/g, "");
+      const bOnlyXLeft = b.phone.replace(/[^\dx]/g, "");
+
+      const newA = aOnlyXLeft.substr(0, aOnlyXLeft.indexOf("x"));
+      const newB = bOnlyXLeft.substr(0, bOnlyXLeft.indexOf("x"));
+
       if (this.state.sortAscending) {
-        return a.phone - b.phone;
+        return parseInt(newA) - parseInt(newB);
       } else {
-        return b.phone - a.phone;
+        return parseInt(newB) - parseInt(newA);
       }
     });
 
