@@ -6,3 +6,16 @@
   background-position: bottom;
   background-size: cover;
 }
+
+.logo-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -77px 0px 15px 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}

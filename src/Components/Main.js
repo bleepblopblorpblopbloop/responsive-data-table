@@ -147,19 +147,33 @@ class Main extends Component {
       <div className="main">
         <React.Fragment>
           <div>
+            <LogoTag className="logo-tag" />
             <div className="logo-search-container">
-              <LogoTag />
-              <SearchBar setQuery={this.setQuery} query={this.state.query} />
+              <SearchBar
+                className="search-bar"
+                setQuery={this.setQuery}
+                query={this.state.query}
+              />
             </div>
-            <Button variant="outline-light" onClick={this.sortById}>
-              User Id
-            </Button>
-            <Button variant="outline-light" onClick={this.sortByName}>
-              Name
-            </Button>
-            <Button variant="outline-light" onClick={this.sortByBusinessName}>
-              Company
-            </Button>
+            <div className="button-container">
+              <Button variant="outline-light" size="sm" onClick={this.sortById}>
+                User Id
+              </Button>
+              <Button
+                variant="outline-light"
+                size="sm"
+                onClick={this.sortByName}
+              >
+                Name
+              </Button>
+              <Button
+                variant="outline-light"
+                size="sm"
+                onClick={this.sortByBusinessName}
+              >
+                Company
+              </Button>
+            </div>
           </div>
         </React.Fragment>
 

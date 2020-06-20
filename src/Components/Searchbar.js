@@ -14,7 +14,7 @@ class Searchbar extends Component {
     return (
       <div className="search-container">
         <InputGroup
-          size="lg"
+          // size="lg"
           value={this.props.query}
           onChange={this.handleChange}
         >
