@@ -1,22 +1,18 @@
 import React from "react";
 import "../Assets/stylesheets/LogoTag.css";
-
-// components
-import { ReactComponent as ReactLogo } from "../Assets/images/grapes.svg";
-// import Grapes from "./Grapes";
+import grapes from "../Assets/images/grapes.png";
 
 function LogoTag() {
   return (
     <div className="logo-container">
-      <img
-        className="grapes"
-        src="../Assets/images/grapes.svg"
-        alt="grape-logo"
-      />
-      <div>
-        <h3 className="company-name">GrapeAlliance</h3>
-        <p className="tag-line">Bringing Tech into Wine</p>
-      </div>
+      <span className="logo-container-grouping">
+        <img className="grapes" src={grapes} alt="grape-logo" />
+        <div>
+          <h4 className="company-name">
+            GrapeAlliance<p className="tag-line">Bringing Tech into Wine</p>
+          </h4>
+        </div>
+      </span>
     </div>
   );
 }

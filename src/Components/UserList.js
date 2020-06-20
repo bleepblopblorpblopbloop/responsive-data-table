@@ -22,7 +22,7 @@ const UserList = (props) => {
   });
 
   return (
-    <Table className="table" responsive borderless hover size="sm">
+    <Table className="table" responsive borderless size="sm">
       <thead>
         <tr>
           <th>ID</th>
