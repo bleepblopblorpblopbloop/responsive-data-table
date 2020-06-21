@@ -42,13 +42,15 @@ const UserList = (props) => {
         </tr>
       </thead>
       <tbody className="table-body">
-        {/* maps over the users which remain relevant to the string typed into the search bar */}
+        {/* maps over the users that match the string typed into the search bar */}
         {filtered.map((user) => {
           return (
             <tr key={user.id} style={{ marginBottom: "100px" }}>
               <td>{user.id}</td>
               <td>
                 <div>
+                  {/* the onChange handler function "textChanged", triggers the 
+                corresponding method in Main.js, */}
                   <ContentEditable
                     disabled={false}
                     onChange={(evt) => props.textChanged(evt, "name", user.id)}
@@ -148,7 +150,8 @@ const UserList = (props) => {
               </td>
               <td>
                 <>
-                  {/* this onClick triggers the deleteUser method in Main.js, thus removing the user from the list */}
+                  {/* the onClick  function "filterUsers" triggers the deleteUser 
+                  method in Main.js, thus removing the user from the list */}
                   <Button
                     variant="outline-light"
                     size="sm"

@@ -11,6 +11,8 @@ const SortButtons = (props) => {
 
   return (
     <div>
+      {/* the onClick handler function "sortById", triggers the 
+                corresponding method in Main.js, */}
       <Button
         className="btn"
         variant="outline-light"
@@ -19,6 +21,8 @@ const SortButtons = (props) => {
       >
         User Id
       </Button>
+      {/* the onClick handler function "dynamicSort", triggers the 
+                corresponding method in Main.js, */}
       <Button
         className="btn"
         variant="outline-light"
@@ -59,6 +63,8 @@ const SortButtons = (props) => {
       >
         Email
       </Button>
+      {/* the onClick handler function "sortByPhone", triggers the 
+                corresponding method in Main.js, */}
       <Button
         className="btn"
         variant="outline-light"

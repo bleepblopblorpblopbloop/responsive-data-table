@@ -17,10 +17,11 @@ class Main extends Component {
     this.state = {
       users: [],
       query: "",
+      sortAscending: true,
     };
   }
 
-  // this axios "get" request retrieves data from the supplied API and then sets the state
+  // "get" request which retrieves data from the supplied API and then sets the state
   componentDidMount() {
     axios.get(`https://jsonplaceholder.typicode.com/users`).then((res) => {
       const users = res.data
@@ -51,7 +52,7 @@ class Main extends Component {
     });
   }
 
-  // deleteUser allows the person using the website to delete users that appear in the user list
+  /** Function that allows you to delete users from the user list */
   deleteUser = (userId) => {
     this.setState({
       users: this.state.users.filter((user) => {
@@ -60,14 +61,15 @@ class Main extends Component {
     });
   };
 
-  // setQuery sets state.query from information provided through the SearchBar
+  /** Function that accepts data provided through the onChange handler for the search bar
+   * and and then uses it to set state.query */
   setQuery = (query) => {
     this.setState({
       query: query,
     });
   };
 
-  // sortById sorts users by their Id number and then sets state.users with the new order
+  /**  Function that sorts users by their Id number */
   sortById = () => {
     const sorted = [...this.state.users];
     sorted.sort((a, b) => {
@@ -85,7 +87,7 @@ class Main extends Component {
   };
 
   /** 
-  // Function to sort table columns alphabetically and then set state.users with the new order
+  // Function to sort table columns alphabetically 
   * @param {string} field - item field name from a specific object in users array
   */
   dynamicSort = (field) => {
@@ -104,24 +106,21 @@ class Main extends Component {
     });
   };
 
-  // sortByPhone sorts users by their phone number, starting with the area code, and then sets state.users with the new order
+  /** Function to sort users by their phone numbers area code */
   sortByPhone = (el) => {
     const sorted = [...this.state.users];
 
-    /** this series of functions removes all non-digit characters
-     * and phone extensions allowing us to sort by the phone
-     * numbers area code */
     sorted.sort((a, b) => {
+      /** Function to remove all  non-digit characters except 'x' */
       const aOnlyX = a.phone.replace(/[^0-9\x]/g, "");
 
+      /** Functions to remove all phone extensions */
       let noXA = "";
       if (aOnlyX.includes("x") === true) {
         noXA = aOnlyX.slice(0, aOnlyX.indexOf("x"));
       } else if (aOnlyX.includes("x") === false) {
         noXA = aOnlyX;
       }
-      let newA = noXA.slice(-10);
-
       const bOnlyX = b.phone.replace(/[^0-9\x]/g, "");
       let noXB = "";
       if (bOnlyX.includes("x") === true) {
@@ -129,6 +128,9 @@ class Main extends Component {
       } else if (bOnlyX.includes("x") === false) {
         noXB = bOnlyX;
       }
+
+      /** Functions to remove the country code */
+      let newA = noXA.slice(-10);
       let newB = noXB.slice(-10);
 
       if (this.state.sortAscending) {

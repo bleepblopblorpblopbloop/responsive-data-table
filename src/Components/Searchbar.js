@@ -8,6 +8,9 @@ import FormControl from "react-bootstrap/FormControl";
 import "../Assets/stylesheets/Searchbar.css";
 
 class Searchbar extends Component {
+  /** this onChange handler accepts input from the searchbar
+   * search field and then passes that data to the setQuery
+   * method */
   handleChange = (event) => {
     this.props.setQuery(event.target.value);
   };
