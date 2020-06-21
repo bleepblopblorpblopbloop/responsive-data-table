@@ -106,21 +106,49 @@ class Main extends Component {
   };
 
   // sortByPhone sorts users by their phone number, starting with the area code, and then sets state.users with the new order
-  sortByPhone = () => {
+  sortByPhone = (el) => {
     const sorted = [...this.state.users];
 
     sorted.sort((a, b) => {
-      const aOnlyXLeft = a.phone.replace(/[^\dx]/g, "");
-      const bOnlyXLeft = b.phone.replace(/[^\dx]/g, "");
-      const newA = aOnlyXLeft.substr(0, aOnlyXLeft.indexOf("x"));
-      const newB = bOnlyXLeft.substr(0, bOnlyXLeft.indexOf("x"));
+      /** this series of functions removes all non-digit characters
+       * and phone extensions allowing us to sort by the phone
+       * numbers area code */
+      const aOnlyX = a.phone.replace(/[^0-9\x]/g, "");
 
+      let noXA = "";
+      if (aOnlyX.includes("x") === true) {
+        noXA = aOnlyX.slice(0, aOnlyX.indexOf("x"));
+      } else if (aOnlyX.includes("x") === false) {
+        noXA = aOnlyX;
+      }
+      console.log("noXA:", noXA);
+      let newA = noXA.slice(-10);
+      console.log("newA:", newA);
+
+      /** this series of functions removes all non-digit characters
+       * and phone extensions allowing us to sort by the phone
+       * numbers area code */
+      const bOnlyX = b.phone.replace(/[^0-9\x]/g, "");
+
+      let noXB = "";
+      if (bOnlyX.includes("x") === true) {
+        noXB = bOnlyX.slice(0, bOnlyX.indexOf("x"));
+      } else if (bOnlyX.includes("x") === false) {
+        noXB = bOnlyX;
+      }
+      console.log("noXB:", noXB);
+      let newB = noXB.slice(-10);
+      console.log("newB:", newB);
+
+      /** this if statement compares   */
       if (this.state.sortAscending) {
-        return parseInt(newA) - parseInt(newB);
+        return newA - newB;
       } else {
-        return parseInt(newB) - parseInt(newA);
+        return newB - newA;
       }
     });
+
+    console.log("sorted:", sorted);
 
     this.setState({
       sortAscending: !this.state.sortAscending,
