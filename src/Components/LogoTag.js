@@ -1,6 +1,8 @@
 import React from "react";
-import "../Assets/stylesheets/LogoTag.css";
 import grapes from "../Assets/images/grapes.png";
+
+// stylesheets
+import "../Assets/stylesheets/LogoTag.css";
 
 function LogoTag() {
   return (

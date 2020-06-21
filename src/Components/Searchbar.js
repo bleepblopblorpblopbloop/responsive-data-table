@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+
+// components
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
+// stylesheets
 import "../Assets/stylesheets/Searchbar.css";
 
 class Searchbar extends Component {
@@ -14,11 +17,7 @@ class Searchbar extends Component {
 
     return (
       <div className="search-container">
-        <InputGroup
-          // size="lg"
-          value={query}
-          onChange={this.handleChange}
-        >
+        <InputGroup value={query} onChange={this.handleChange}>
           <FormControl
             placeholder="Type here to search..."
             aria-label="Large"

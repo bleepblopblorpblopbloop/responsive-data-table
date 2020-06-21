@@ -25,7 +25,6 @@ class Main extends Component {
     axios.get(`https://jsonplaceholder.typicode.com/users`).then((res) => {
       const users = res.data
         .map((el) => {
-          console.log(el);
           const newObj = {};
           newObj.id = el.id;
           newObj.name = el.name;
@@ -109,10 +108,10 @@ class Main extends Component {
   sortByPhone = (el) => {
     const sorted = [...this.state.users];
 
+    /** this series of functions removes all non-digit characters
+     * and phone extensions allowing us to sort by the phone
+     * numbers area code */
     sorted.sort((a, b) => {
-      /** this series of functions removes all non-digit characters
-       * and phone extensions allowing us to sort by the phone
-       * numbers area code */
       const aOnlyX = a.phone.replace(/[^0-9\x]/g, "");
 
       let noXA = "";
@@ -121,34 +120,23 @@ class Main extends Component {
       } else if (aOnlyX.includes("x") === false) {
         noXA = aOnlyX;
       }
-      console.log("noXA:", noXA);
       let newA = noXA.slice(-10);
-      console.log("newA:", newA);
 
-      /** this series of functions removes all non-digit characters
-       * and phone extensions allowing us to sort by the phone
-       * numbers area code */
       const bOnlyX = b.phone.replace(/[^0-9\x]/g, "");
-
       let noXB = "";
       if (bOnlyX.includes("x") === true) {
         noXB = bOnlyX.slice(0, bOnlyX.indexOf("x"));
       } else if (bOnlyX.includes("x") === false) {
         noXB = bOnlyX;
       }
-      console.log("noXB:", noXB);
       let newB = noXB.slice(-10);
-      console.log("newB:", newB);
 
-      /** this if statement compares   */
       if (this.state.sortAscending) {
         return newA - newB;
       } else {
         return newB - newA;
       }
     });
-
-    console.log("sorted:", sorted);
 
     this.setState({
       sortAscending: !this.state.sortAscending,
@@ -180,26 +168,20 @@ class Main extends Component {
     const { query, users } = this.state;
     return (
       <div className="main">
-        <React.Fragment>
-          <div>
-            <LogoTag className="logo-tag" />
-            <div className="logo-search-container">
-              <SearchBar
-                className="search-bar"
-                setQuery={this.setQuery}
-                query={query}
-              />
-            </div>
-            <div className="button-container">
-              <SortButtons
-                users={users}
-                sortById={this.sortById}
-                dynamicSort={this.dynamicSort}
-                sortByPhone={this.sortByPhone}
-              />
-            </div>
+        <div>
+          <LogoTag />
+          <div className="logo-search-container">
+            <SearchBar setQuery={this.setQuery} query={query} />
           </div>
-        </React.Fragment>
+          <div className="button-container">
+            <SortButtons
+              users={users}
+              sortById={this.sortById}
+              dynamicSort={this.dynamicSort}
+              sortByPhone={this.sortByPhone}
+            />
+          </div>
+        </div>
         <div className="user-list-container">
           <UserList
             filterUsers={this.deleteUser}

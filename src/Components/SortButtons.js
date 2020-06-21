@@ -1,14 +1,18 @@
 import React from "react";
+
+// components
 import Button from "react-bootstrap/Button";
 
-const SortButtons = (props) => {
-  console.log(props);
+// stylesheets
+import "../Assets/stylesheets/SortButtons.css";
 
+const SortButtons = (props) => {
   const { id, phone } = props.users;
 
   return (
     <div>
       <Button
+        className="btn"
         variant="outline-light"
         size="sm"
         onClick={() => props.sortById(id)}

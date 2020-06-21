@@ -1,7 +1,11 @@
 import React from "react";
 import ContentEditable from "react-contenteditable";
+
+// components
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+
+// stylesheets
 import "../Assets/stylesheets/UserList.css";
 
 const UserList = (props) => {
