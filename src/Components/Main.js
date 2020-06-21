@@ -36,8 +36,13 @@ class Main extends Component {
           newObj.website = el.website;
           newObj.email = el.email;
           newObj.phone = el.phone;
-          newObj.address = el.address.suite + ", " + el.address.street;
-          newObj.city = el.address.city + " " + el.address.zipcode;
+          newObj.address =
+            el.address.suite +
+            ", " +
+            el.address.street +
+            " " +
+            el.address.zipcode;
+          newObj.city = el.address.city;
           newObj.latLng =
             "lat: " + el.address.geo.lat + ", lng:" + el.address.geo.lng;
           return newObj;

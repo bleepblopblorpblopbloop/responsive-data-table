@@ -120,17 +120,18 @@ const UserList = (props) => {
               <td>
                 <div>
                   <ContentEditable
+                    // className="bolder-text"
+                    disabled={false}
+                    onChange={(evt) => props.textChanged(evt, "city", user.id)}
+                    html={user.city}
+                  />
+                  <ContentEditable
+                    className="shrunken-text"
                     disabled={false}
                     onChange={(evt) =>
                       props.textChanged(evt, "address", user.id)
                     }
                     html={user.address}
-                  />
-                  <ContentEditable
-                    className="bolder-text"
-                    disabled={false}
-                    onChange={(evt) => props.textChanged(evt, "city", user.id)}
-                    html={user.city}
                   />
                   <ContentEditable
                     className="shrunken-text"
