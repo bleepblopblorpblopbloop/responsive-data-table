@@ -147,11 +147,11 @@ const UserList = (props) => {
                 <>
                   {/* this onClick triggers the deleteUser method in Main.js, thus removing the user from the list */}
                   <Button
-                    variant="danger"
+                    variant="outline-light"
                     size="sm"
                     onClick={() => props.filterUsers(user.id)}
                   >
-                    X
+                    Delete User
                   </Button>
                 </>
               </td>
