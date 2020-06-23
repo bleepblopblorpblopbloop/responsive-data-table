@@ -2,9 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 function DeleteButton(props) {
-  console.log(props);
   const { user } = props;
-
   return (
     <>
       {/* the onClick  function "filterUsers" triggers the deleteUser 

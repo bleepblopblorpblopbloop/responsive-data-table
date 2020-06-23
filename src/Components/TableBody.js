@@ -1,4 +1,6 @@
 import React from "react";
+
+// components
 import ContentEditable from "react-contenteditable";
 import DeleteButton from "./DeleteButton";
 
@@ -31,97 +33,81 @@ function TableRows(props) {
           <tr key={user.id}>
             <td>{user.id}</td>
             <td>
-              <div>
-                {/* the onChange handler function "textChanged", triggers the 
+              {/* the onChange handler function "textChanged", triggers the 
                     corresponding method in Main.js, */}
-                <ContentEditable
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "name", user.id)}
-                  html={user.name}
-                />
-              </div>
+              <ContentEditable
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "name", user.id)}
+                html={user.name}
+              />
             </td>
             <td>
-              <div>
-                <ContentEditable
-                  disabled={false}
-                  onChange={(evt) =>
-                    props.textChanged(evt, "username", user.id)
-                  }
-                  html={user.username}
-                />
-              </div>
+              <ContentEditable
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "username", user.id)}
+                html={user.username}
+              />
             </td>
             <td>
-              <div>
-                <ContentEditable
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "company", user.id)}
-                  html={user.company}
-                />
-                <ContentEditable
-                  className="shrunken-text"
-                  disabled={false}
-                  onChange={(evt) =>
-                    props.textChanged(evt, "catchPhrase", user.id)
-                  }
-                  html={user.catchPhrase}
-                />
-                <ContentEditable
-                  className="shrunken-text"
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "bs", user.id)}
-                  html={user.bs}
-                />
-              </div>
+              <ContentEditable
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "company", user.id)}
+                html={user.company}
+              />
+              <ContentEditable
+                className="shrunken-text"
+                disabled={false}
+                onChange={(evt) =>
+                  props.textChanged(evt, "catchPhrase", user.id)
+                }
+                html={user.catchPhrase}
+              />
+              <ContentEditable
+                className="shrunken-text"
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "bs", user.id)}
+                html={user.bs}
+              />
             </td>
             <td>
-              <div>
-                <ContentEditable
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "website", user.id)}
-                  html={user.website}
-                />
-              </div>
+              <ContentEditable
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "website", user.id)}
+                html={user.website}
+              />
             </td>
             <td>
-              <div>
-                <ContentEditable
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "email", user.id)}
-                  html={user.email}
-                />
-              </div>
+              <ContentEditable
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "email", user.id)}
+                html={user.email}
+              />
             </td>
             <td>
-              <div>
-                <ContentEditable
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "phone", user.id)}
-                  html={user.phone}
-                />
-              </div>
+              <ContentEditable
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "phone", user.id)}
+                html={user.phone}
+              />
             </td>
             <td>
-              <div>
-                <ContentEditable
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "city", user.id)}
-                  html={user.city}
-                />
-                <ContentEditable
-                  className="shrunken-text"
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "address", user.id)}
-                  html={user.address}
-                />
-                <ContentEditable
-                  className="shrunken-text"
-                  disabled={false}
-                  onChange={(evt) => props.textChanged(evt, "latlng", user.id)}
-                  html={user.latLng}
-                />
-              </div>
+              <ContentEditable
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "city", user.id)}
+                html={user.city}
+              />
+              <ContentEditable
+                className="shrunken-text"
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "address", user.id)}
+                html={user.address}
+              />
+              <ContentEditable
+                className="shrunken-text"
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "latlng", user.id)}
+                html={user.latLng}
+              />
             </td>
             <td>
               <DeleteButton user={user} deleteUser={deleteUser} />
