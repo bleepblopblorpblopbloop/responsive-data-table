@@ -15,7 +15,13 @@ function TableRows(props) {
       user.name.toLowerCase().includes(query.toLowerCase()) ||
       user.username.toLowerCase().includes(query.toLowerCase()) ||
       user.address.toLowerCase().includes(query.toLowerCase()) ||
+      user.city.toLowerCase().includes(query.toLowerCase()) ||
+      user.zipcode.toLowerCase().includes(query.toLowerCase()) ||
+      user.lat.toLowerCase().includes(query.toLowerCase()) ||
+      user.lng.toLowerCase().includes(query.toLowerCase()) ||
       user.company.toLowerCase().includes(query.toLowerCase()) ||
+      user.bs.toLowerCase().includes(query.toLowerCase()) ||
+      user.catchPhrase.toLowerCase().includes(query.toLowerCase()) ||
       user.email.toLowerCase().includes(query.toLowerCase()) ||
       user.phone.toLowerCase().includes(query.toLowerCase()) ||
       user.website.toLowerCase().includes(query.toLowerCase())
