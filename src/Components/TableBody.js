@@ -54,6 +54,8 @@ function TableRows(props) {
                 onChange={(evt) => props.textChanged(evt, "company", user.id)}
                 html={user.company}
               />
+            </td>
+            <td>
               <ContentEditable
                 className="shrunken-text"
                 disabled={false}
@@ -62,6 +64,8 @@ function TableRows(props) {
                 }
                 html={user.catchPhrase}
               />
+            </td>
+            <td>
               <ContentEditable
                 className="shrunken-text"
                 disabled={false}
@@ -96,17 +100,37 @@ function TableRows(props) {
                 onChange={(evt) => props.textChanged(evt, "city", user.id)}
                 html={user.city}
               />
+            </td>
+            <td>
               <ContentEditable
                 className="shrunken-text"
                 disabled={false}
                 onChange={(evt) => props.textChanged(evt, "address", user.id)}
                 html={user.address}
               />
+            </td>
+            <td>
               <ContentEditable
                 className="shrunken-text"
                 disabled={false}
-                onChange={(evt) => props.textChanged(evt, "latlng", user.id)}
-                html={user.latLng}
+                onChange={(evt) => props.textChanged(evt, "zipcode", user.id)}
+                html={user.zipcode}
+              />
+            </td>
+            <td>
+              <ContentEditable
+                className="shrunken-text"
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "lat", user.id)}
+                html={user.lat}
+              />
+            </td>
+            <td>
+              <ContentEditable
+                className="shrunken-text"
+                disabled={false}
+                onChange={(evt) => props.textChanged(evt, "lng", user.id)}
+                html={user.lng}
               />
             </td>
             <td>

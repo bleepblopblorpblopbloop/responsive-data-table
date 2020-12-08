@@ -24,6 +24,7 @@ class Main extends Component {
   // "get" request which retrieves data from the supplied API and then sets the state
   componentDidMount() {
     axios.get(`https://jsonplaceholder.typicode.com/users`).then((res) => {
+      console.log(res);
       const users = res.data
         .map((el) => {
           const newObj = {};
@@ -36,15 +37,12 @@ class Main extends Component {
           newObj.website = el.website;
           newObj.email = el.email;
           newObj.phone = el.phone;
-          newObj.address =
-            el.address.suite +
-            ", " +
-            el.address.street +
-            " " +
-            el.address.zipcode;
+          newObj.address = el.address.suite + ", " + el.address.street;
+          newObj.zipcode = el.address.zipcode;
           newObj.city = el.address.city;
-          newObj.latLng =
-            "lat: " + el.address.geo.lat + ", lng:" + el.address.geo.lng;
+          newObj.lat = "lat: " + el.address.geo.lat;
+
+          newObj.lng = "lng:" + el.address.geo.lng;
           return newObj;
         })
         .flat();
