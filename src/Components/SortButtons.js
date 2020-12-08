@@ -1,6 +1,7 @@
 import React from "react";
 
 // components
+import SortButton from "./SortButton";
 import Button from "react-bootstrap/Button";
 
 // stylesheets
@@ -9,8 +10,10 @@ import "../Assets/stylesheets/SortButtons.css";
 const SortButtons = (props) => {
   const { id, phone } = props.users;
 
+  // const buttonText =
+
   return (
-    <div>
+    <div className="buttons">
       {/* the onClick handler function "sortById", triggers the 
                 corresponding method in Main.js, */}
       <Button
@@ -23,14 +26,12 @@ const SortButtons = (props) => {
       </Button>
       {/* the onClick handler function "dynamicSort", triggers the 
                 corresponding method in Main.js, */}
-      <Button
-        className="btn"
-        variant="outline-light"
-        size="sm"
+      <SortButton
+        dynamicSort={props.dynamicSort}
         onClick={() => props.dynamicSort("name")}
       >
         Name
-      </Button>
+      </SortButton>
       <Button
         className="btn"
         variant="outline-light"

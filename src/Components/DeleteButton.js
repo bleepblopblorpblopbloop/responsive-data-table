@@ -12,7 +12,7 @@ function DeleteButton(props) {
         size="sm"
         onClick={() => props.deleteUser(user.id)}
       >
-        Delete User
+        Delete
       </Button>
     </>
   );
