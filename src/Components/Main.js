@@ -8,7 +8,6 @@ import "../Assets/stylesheets/Main.css";
 import UserList from "./UserList";
 import SearchBar from "./Searchbar";
 import LogoTag from "./LogoTag";
-import SortButtons from "./SortButtons";
 
 class Main extends Component {
   // constructor(props) {
@@ -172,14 +171,6 @@ class Main extends Component {
           <LogoTag />
           <div className="logo-search-container">
             <SearchBar setQuery={this.setQuery} query={query} />
-          </div>
-          <div className="button-container">
-            <SortButtons
-              users={users}
-              sortById={this.sortById}
-              dynamicSort={this.dynamicSort}
-              sortByPhone={this.sortByPhone}
-            />
           </div>
         </div>
         <div className="user-list-container">
