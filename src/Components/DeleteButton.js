@@ -8,7 +8,7 @@ function DeleteButton(props) {
       {/* the onClick  function "filterUsers" triggers the deleteUser 
       method in Main.js, thus removing the user from the list */}
       <Button
-        variant="outline-light"
+        variant="danger"
         size="sm"
         onClick={() => props.deleteUser(user.id)}
       >
