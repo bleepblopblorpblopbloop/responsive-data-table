@@ -22,7 +22,7 @@ const UserList = (props) => {
   } = props;
 
   return (
-    <Table className="table" responsive="sm" borderless size="sm">
+    <Table className="table" responsive borderless size="sm">
       <TableHead
         sortById={sortById}
         sortByPhone={sortByPhone}

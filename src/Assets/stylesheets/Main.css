@@ -14,12 +14,6 @@
   margin: -77px 0px 15px 0;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
 .user-list-container {
   display: flex;
   align-items: center;

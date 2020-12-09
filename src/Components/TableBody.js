@@ -37,7 +37,7 @@ function TableRows(props) {
       {filtered.map((user) => {
         return (
           <tr key={user.id}>
-            <td>{user.id}</td>
+            <td className="sticky-column">{user.id}</td>
             <td>
               {/* the onChange handler function "textChanged", triggers the 
                     corresponding method in Main.js, */}
@@ -109,7 +109,6 @@ function TableRows(props) {
             </td>
             <td>
               <ContentEditable
-                className="shrunken-text"
                 disabled={false}
                 onChange={(evt) => props.textChanged(evt, "address", user.id)}
                 html={user.address}
@@ -117,7 +116,6 @@ function TableRows(props) {
             </td>
             <td>
               <ContentEditable
-                className="shrunken-text"
                 disabled={false}
                 onChange={(evt) => props.textChanged(evt, "zipcode", user.id)}
                 html={user.zipcode}
@@ -125,7 +123,6 @@ function TableRows(props) {
             </td>
             <td>
               <ContentEditable
-                className="shrunken-text"
                 disabled={false}
                 onChange={(evt) => props.textChanged(evt, "lat", user.id)}
                 html={user.lat}
@@ -133,7 +130,6 @@ function TableRows(props) {
             </td>
             <td>
               <ContentEditable
-                className="shrunken-text"
                 disabled={false}
                 onChange={(evt) => props.textChanged(evt, "lng", user.id)}
                 html={user.lng}
