@@ -188,6 +188,9 @@ class Main extends Component {
             query={query}
             textChanged={this.textChanged}
             html={users}
+            sortById={this.sortById}
+            dynamicSort={this.dynamicSort}
+            sortByPhone={this.sortByPhone}
           />
         </div>
       </div>

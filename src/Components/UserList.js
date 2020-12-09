@@ -11,11 +11,24 @@ import "../Assets/stylesheets/UserList.css";
 const UserList = (props) => {
   console.log(props);
 
-  const { html, query, filterUsers, textChanged } = props;
+  const {
+    html,
+    query,
+    filterUsers,
+    textChanged,
+    sortById,
+    sortByPhone,
+    dynamicSort,
+  } = props;
 
   return (
     <Table className="table" responsive="sm" borderless size="sm">
-      <TableHead />
+      <TableHead
+        sortById={sortById}
+        sortByPhone={sortByPhone}
+        dynamicSort={dynamicSort}
+        user={html}
+      />
       <TableBody
         query={query}
         deleteUser={filterUsers}

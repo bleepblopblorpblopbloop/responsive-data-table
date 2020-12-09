@@ -10,8 +10,6 @@ import "../Assets/stylesheets/SortButtons.css";
 const SortButtons = (props) => {
   const { id, phone } = props.users;
 
-  // const buttonText =
-
   return (
     <div className="buttons">
       {/* the onClick handler function "sortById", triggers the 
