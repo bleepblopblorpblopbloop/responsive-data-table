@@ -1,8 +1,26 @@
+.table-responsive {
+  height: 90vh;
+  overflow: scroll;
+  margin-top: 10px;
+}
+
 .table {
   color: white;
   font-family: "Poppins", sans-serif;
   position: relative;
-  height: 86vh;
+}
+
+thead tr th {
+  background-color: rgb(62, 55, 66);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+thead tr:nth-child(1) th {
+  position: sticky;
+  top: 0;
 }
 
 th {

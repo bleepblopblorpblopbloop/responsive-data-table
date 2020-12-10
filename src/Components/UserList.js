@@ -22,20 +22,22 @@ const UserList = (props) => {
   } = props;
 
   return (
-    <Table className="table" responsive borderless size="sm">
-      <TableHead
-        sortById={sortById}
-        sortByPhone={sortByPhone}
-        dynamicSort={dynamicSort}
-        user={html}
-      />
-      <TableBody
-        query={query}
-        deleteUser={filterUsers}
-        textChanged={textChanged}
-        html={html}
-      />
-    </Table>
+    <div className="table-responsive">
+      <Table className="table" responsive borderless size="sm">
+        <TableHead
+          sortById={sortById}
+          sortByPhone={sortByPhone}
+          dynamicSort={dynamicSort}
+          user={html}
+        />
+        <TableBody
+          query={query}
+          deleteUser={filterUsers}
+          textChanged={textChanged}
+          html={html}
+        />
+      </Table>
+    </div>
   );
 };
 
