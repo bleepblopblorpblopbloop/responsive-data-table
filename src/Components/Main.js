@@ -10,15 +10,11 @@ import SearchBar from "./Searchbar";
 import LogoTag from "./LogoTag";
 
 class Main extends Component {
-  // constructor(props) {
-  // super(props);
-
   state = {
     users: [],
     query: "",
     sortAscending: true,
   };
-  // }
 
   // "get" request which retrieves data from the supplied API and then sets the state
   componentDidMount() {
