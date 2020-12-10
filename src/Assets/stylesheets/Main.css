@@ -20,3 +20,37 @@
   justify-content: center;
   margin: 5px 50px 0 50px;
 }
+
+@media (max-width: 649px) {
+  .logo-tag-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 0px 15px 0;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 1249px) {
+  .logo-tag-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 0px 15px 0;
+    width: vw;
+    margin: 0 10px 0 10px;
+  }
+}

@@ -39,7 +39,7 @@ class Main extends Component {
           newObj.address = el.address.suite + ", " + el.address.street;
           newObj.zipcode = el.address.zipcode;
           newObj.city = el.address.city;
-          newObj.lat = "lat: " + el.address.geo.lat;
+          newObj.lat = "lat:" + el.address.geo.lat;
 
           newObj.lng = "lng:" + el.address.geo.lng;
           return newObj;
@@ -167,7 +167,7 @@ class Main extends Component {
     const { query, users } = this.state;
     return (
       <div className="main">
-        <div>
+        <div className="logo-tag-container">
           <LogoTag />
           <div className="logo-search-container">
             <SearchBar setQuery={this.setQuery} query={query} />

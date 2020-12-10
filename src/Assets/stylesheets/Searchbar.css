@@ -1,3 +1,21 @@
 .search-container {
-  width: 500px;
+  width: 80vw;
+}
+
+@media (max-width: 649px) {
+  .search-container {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 999px) {
+  .search-container {
+    width: 500px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .search-container {
+    width: 500px;
+  }
 }

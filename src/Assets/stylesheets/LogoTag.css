@@ -26,3 +26,15 @@
   position: relative;
   left: 14px;
 }
+
+@media (max-width: 649px) {
+  .logo-container {
+    margin-left: -70px;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 1249px) {
+  .logo-container {
+    margin-left: -70px;
+  }
+}
